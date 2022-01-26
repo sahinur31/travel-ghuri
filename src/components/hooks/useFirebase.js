@@ -88,8 +88,8 @@ const useFirebase = () => {
    },[auth])
 
    
-    useEffect(() => {
-        fetch(`https://shielded-citadel-62886.herokuapp.com/checkAdmin/${user?.email}`)
+   /*  useEffect(() => {
+        fetch(`https://localhost:5000/checkAdmin/${user?.email}`)
           .then((res) => res.json())
           .then((data) => {
             if (data[0]?.role === "admin") {
@@ -98,7 +98,7 @@ const useFirebase = () => {
               setIsAdmin(false);
             }
           });
-      }, [user?.email]);
+      }, [user?.email]); */
     //   console.log(isAdmin);
     const logout = () => {
         setIsLoading(true);
@@ -112,7 +112,7 @@ const useFirebase = () => {
 
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
-        fetch('https://shielded-citadel-62886.herokuapp.com/users', {
+        fetch('http://localhost:5000/users', {
             method: method,
             headers: {
                 'content-type': 'application/json'
