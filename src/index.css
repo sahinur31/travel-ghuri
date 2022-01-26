@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Raleway:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  @apply font-title font-black text-3xl my-10  md:text-6xl text-dark-blue text-center;
+}
+.container {
+  @apply w-full md:w-5/6 px-5 md:mx-auto;
+}
+.title {
+  @apply font-title font-black text-3xl text-left my-5 text-white md:text-7xl;
+}
+
+.btn-1 {
+  @apply py-3 rounded hover:bg-dark-blue text-lg px-8 bg-tomato text-white;
+}
+.btn-2 {
+  @apply py-3 rounded  text-lg px-8 border-2 border-gray-400;
+}
+.header-btn {
+  @apply py-3 rounded  text-lg px-8 bg-tomato text-white;
+}
+.input {
+  @apply w-full px-4 py-3 rounded-lg ring-red-200 focus:ring-4 focus:outline-none  transition duration-300 border border-gray-300 focus:shadow-xl my-3;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
