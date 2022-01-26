@@ -26,6 +26,14 @@ h1 {
 .input {
   @apply w-full px-4 py-3 rounded-lg ring-red-200 focus:ring-4 focus:outline-none  transition duration-300 border border-gray-300 focus:shadow-xl my-3;
 }
+.input-primary {
+  width: 100%;
+  border-radius: 0.375rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgba(229,231,235,var(--tw-border-opacity));
+  padding: 0.75rem 1rem;
+}
 body {
   font-family: "Poppins", sans-serif;
   margin: 0;
