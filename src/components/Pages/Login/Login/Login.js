@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import swal from "sweetalert";
 import useAuth from "../../../hooks/useAuth";
-import logo from "../../../../assets/logo.png";
+// import logo from "../../../../assets/logo.png";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({});
@@ -33,9 +33,9 @@ const Login = () => {
         <div className="grid grid-cols-2 lg:grid-cols-1  h-full">
           <div className="flex justify-center">
            
-            <div className="register border p-3 rounded">
+            <div className="register border p-3 rounded text-center">
               <h4 className="py-3 theme-color">Log in Your Account</h4>
-              <img src={logo} alt="" />
+              {/* <img src={logo} style={{width:'50%',height: '70px'}} alt="" /> */}
               <form onSubmit={handleLoginSubmit}>
                 <input
                   className="block mb-4  shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

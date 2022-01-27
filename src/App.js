@@ -5,6 +5,7 @@ import AddNewBlog from "./components/Pages/Dashboard/Dashboard/AddNewBlog";
 import AllBlogs from "./components/Pages/Dashboard/Dashboard/AllBlogs";
 import Dashboard from "./components/Pages/Dashboard/Dashboard/Dashboard";
 import MakeAdmin from "./components/Pages/Dashboard/Dashboard/MakeAdmin";
+import Review from "./components/Pages/Dashboard/Dashboard/Review";
 import UpdateBlog from "./components/Pages/Dashboard/Dashboard/UpdateBlog";
 import BlogDetails from "./components/Pages/Home/BlogDetails/BlogDetails";
 import Home from "./components/Pages/Home/Home/Home";
@@ -38,7 +39,11 @@ function App() {
                 element={<AllBlogs></AllBlogs>}
               ></Route>
             <Route
-                path="/dashboard/update/:id"
+                path="/dashboard/reviews"
+                element={<Review></Review>}
+              ></Route>
+            <Route
+                path="/dashboard/allBlogs/update/:id"
                 element={<UpdateBlog></UpdateBlog>}
               ></Route>
             </Route>

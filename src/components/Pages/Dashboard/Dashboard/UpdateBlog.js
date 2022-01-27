@@ -27,8 +27,12 @@ const UpdateBlog = () => {
            });
        };
     return (
-        <div>
+        
             <div className="py-4">
+            <div className="flex flex-col space-y-3 mb-4">
+                <h1 className="font-primary text-xl text-gray-700 m-0 text-left">Updated Blog</h1>
+                <div className="w-36 h-1 rounded-full bg-red-400"></div>
+            </div>
             <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
                 <div className="flex flex-col space-y-4">
@@ -49,19 +53,11 @@ const UpdateBlog = () => {
                     <input type="number" className="input-primary" placeholder="Cost" {...register("cost", { required: true })} />
                     {/* info  */}
                     <input type="text" className="input-primary" placeholder="Traveler Info" {...register("info", { required: true })} />
-                 {/*    
-                    <p className="text-gray-600 font-primary">
-                              Give a rating*
-                            </p>
-                            <Rating
-                              onChange={(rate) => setRating(rate)}
-                              emptySymbol={<FaRegStar />}
-                              fullSymbol={<FaStar />}
-                            /> */}
-                    <button className="btn-1 w-36 ml-auto">Add</button>
+                    <button className="btn-1 w-36 ml-auto">
+                      Update
+                    </button>
                 </div>
             </form>
-        </div>
         </div>
     );
 };

@@ -3,10 +3,10 @@ import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { Link, Outlet } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 // import AddNewBlog from "./AddNewBlog";
-import SideMenu from "./SideMenu";
+// import SideMenu from "./SideMenu";
 
 const Dashboard = () => {
-    const { user } = useAuth();
+    const { user,logout } = useAuth();
   const [sidenav, setSidenav] = useState(true);
 
   //toggling the side nav
@@ -25,13 +25,19 @@ const Dashboard = () => {
 
   // const [control, setControl] = useState("addBlog");
   return (
+    <>
+    
     <main className="w-full h-screen grid grid-cols-1 lg:grid-cols-6 xl:grid-cols-6">
+      
       <div className="col-span-1 bg-gray-300">
       <div>
       {sidenav && (
         <>
           <nav className="flex fixed flex-col items-center w-72 bg-white h-screen px-2">
             <div className="mt-24 flex flex-col items-center justify-center space-y-3">
+              <Link to="/home">
+                <button className="btn-1 mb-3">Home</button>
+              </Link>
               {/* image  */}
               <img
                 src="../../assets/profile.png"
@@ -73,7 +79,19 @@ const Dashboard = () => {
                     </div>
                   </Link>
                 </li>
+                <li className="bg-red-500 text-white flex items-center mb-3  rounded-md py-3 cursor-pointer px-2">
+                  <Link to={`/dashboard/reviews`}>
+                    <div className="flex items-center space-x-3">
+                      <span className="ml-2 font-primary">Manage Review</span>
+                    </div>
+                  </Link>
+                </li>
               </ul>
+              <button className="btn-1 mt-4" onClick={logout}>
+                    <div className="flex items-center space-x-3">
+                      <span className="ml-2 font-primary">Log Out</span>
+                    </div>
+                    </button> 
             </div>
           </nav>
         </>
@@ -95,6 +113,7 @@ const Dashboard = () => {
             </div>
       </div>
     </main>
+    </>
   );
 };
 
