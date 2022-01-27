@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, updateProfile, signOut } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, updateProfile, signOut,sendEmailVerification  } from "firebase/auth";
 import initializeAuthentication from "../Firebase/firebase.init";
 
 
@@ -31,7 +31,7 @@ const useFirebase = () => {
                 }).then(() => {
                 }).catch((error) => {
                 });
-                
+                verifyEmail();
                 navigate('/');
                 window.location.reload();
             })
@@ -87,7 +87,14 @@ const useFirebase = () => {
          return ()=> unsubscribe()
    },[auth])
 
-   
+   const verifyEmail = () => {
+    sendEmailVerification(auth.currentUser)
+    .then((result) => {
+      // Email verification sent!
+      // ...
+    });
+  
+   }
    /*  useEffect(() => {
         fetch(`https://localhost:5000/checkAdmin/${user?.email}`)
           .then((res) => res.json())

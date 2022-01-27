@@ -66,6 +66,13 @@ const Dashboard = () => {
                     </div>
                   </Link>
                 </li>
+                <li className="bg-red-500 text-white flex items-center mb-3  rounded-md py-3 cursor-pointer px-2">
+                  <Link to={`/dashboard/allBlogs`}>
+                    <div className="flex items-center space-x-3">
+                      <span className="ml-2 font-primary">Manage Blogs</span>
+                    </div>
+                  </Link>
+                </li>
               </ul>
             </div>
           </nav>
@@ -80,12 +87,7 @@ const Dashboard = () => {
         <MdOutlineArrowForwardIos className="text-2xl text-primary" />
       </div>
     </div>
-        <ul className="flex flex-col space-y-3">
-          <li
-            className="bg-red-500 text-white flex items-center  rounded-md py-3 cursor-pointer px-2">
-              <span className="ml-2 font-primary">Add New Blog</span>
-          </li>
-        </ul>
+       
       </div>
       <div className="col-span-5 pt-24 bg-gray-300">
       <div className="">

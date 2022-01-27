@@ -35,7 +35,7 @@ const Login = () => {
            
             <div className="register border p-3 rounded">
               <h4 className="py-3 theme-color">Log in Your Account</h4>
-
+              <img src={logo} alt="" />
               <form onSubmit={handleLoginSubmit}>
                 <input
                   className="block mb-4  shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -66,7 +66,7 @@ const Login = () => {
                       class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full"
                       role="status"
                     >
-                      <span class="visually-hidden">Loading...</span>
+                      <span class="visually-hidden"></span>
                     </div>
                   </>
                 )}

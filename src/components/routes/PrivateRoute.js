@@ -8,10 +8,10 @@ const PrivateRoute = ({ children, ...rest }) => {
     let location = useLocation();
     if (isLoading) { return <>
         <div
-          class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full"
+          className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full"
           role="status"
         >
-          <span class="visually-hidden">L</span>
+          <span className="visually-hidden">L</span>
         </div>
       </> }
     if (user.email) {
