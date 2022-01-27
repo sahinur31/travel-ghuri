@@ -10,7 +10,7 @@ const User = ({ user, mail }) => {
       return;
     }
     const userData = { email, role };
-    fetch(`http://localhost:5000/users/admin`, {
+    fetch(`https://secure-eyrie-37258.herokuapp.com/users/admin`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

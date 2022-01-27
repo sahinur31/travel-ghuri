@@ -10,7 +10,7 @@ const Navigation = ({ bg, textColor, width }) => {
   const navigate = useNavigate();
 
   const menu = [
-    { id: 1, text: "My Bookings", to: "/my-bookings" },
+    
     { id: 2, text: "Dashboard", to: "/dashboard" },
   ];
 

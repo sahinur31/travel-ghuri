@@ -8,7 +8,7 @@ const MakeAdmin = () => {
   const [users, setUsers] = useState([]); // use redux here
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users`)
+    fetch(`https://secure-eyrie-37258.herokuapp.com/users`)
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);

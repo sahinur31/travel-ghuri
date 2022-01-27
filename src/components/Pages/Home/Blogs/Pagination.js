@@ -11,7 +11,7 @@ const Pagination = ({ postsPerPage, totalPosts, setCurrentPage }) => {
             {
                 pageNumbers.map(number => (
 
-                    <button className='border-2 border-indigo-500 px-5' key={number} onClick={() => setCurrentPage(number)}>{number}</button>
+                    <button className='border-2 border-indigo-500 px-5 mr-2' key={number} onClick={() => setCurrentPage(number)}>{number}</button>
                 ))
             }
 

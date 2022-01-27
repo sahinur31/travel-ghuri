@@ -4,7 +4,7 @@ const Review = () => {
     const [reviews, setReviews] = useState([]);
     const [isUpdated , setIsUpdated] = useState(false)
     useEffect(()=> {
-        fetch('http://localhost:5000/review')
+        fetch('https://secure-eyrie-37258.herokuapp.com/review')
         .then(res => res.json())
         .then(data => {
             setIsUpdated(false)
@@ -20,7 +20,7 @@ const Review = () => {
             status : 'Approved'
         }
         console.log(updatedStatus)
-        fetch(`http://localhost:5000/review/${id}` , {
+        fetch(`https://secure-eyrie-37258.herokuapp.com/review/${id}` , {
             method : "PUT",
             headers:{
                 'Content-Type':'application/json'

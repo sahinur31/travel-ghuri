@@ -20,7 +20,7 @@ const AddNewForm = () => {
       } */
         
         axios
-          .post("http://localhost:5000/blogs", data)
+          .post("https://secure-eyrie-37258.herokuapp.com/blogs", data)
           .then((res) => {
             if (res.data.acknowledged) {
               swal("Good job!", "Blog Added", "success");

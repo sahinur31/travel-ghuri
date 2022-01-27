@@ -17,9 +17,10 @@ const BlogDetails = () => {
   const { user } = useAuth();
   const { id } = useParams();
   const [blog, setBlog] = useState({});
+  const [reviews, setReviews] = useState([]);
   const [rating, setRating] = React.useState();
   useEffect(() => {
-    fetch(`http://localhost:5000/blogs/${id}`)
+    fetch(`https://secure-eyrie-37258.herokuapp.com/blogs/${id}`)
       .then((res) => res.json())
       .then((data) => setBlog(data));
   }, [id]);
@@ -34,7 +35,7 @@ const BlogDetails = () => {
         
     }
     axios
-      .post("http://localhost:5000/review", newReview)
+      .post("https://secure-eyrie-37258.herokuapp.com/review", newReview)
       .then((res) => {
         if (res.data.acknowledged) {
           swal("Good job!", "Review Added", "success");
@@ -45,9 +46,15 @@ const BlogDetails = () => {
         swal("Something went wrong!", `${error.message}`, "error");
       });
   };
+  useEffect(() => {
+    fetch(`https://secure-eyrie-37258.herokuapp.com/review`)
+      .then((res) => res.json())
+      .then((data) => setReviews(data));
+  }, []);
+  // console.log(reviews);
   return (
     <div className="container my-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 my-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-10 my-20">
         {/* contect of the blog */}
         <div>
           <h1>{blog.title}</h1>
@@ -82,7 +89,7 @@ const BlogDetails = () => {
           </div>
         </div>
         <div>
-          <h2>Reviews</h2>
+          <h1 className="mb-4">Reviews</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
               className="block mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -125,6 +132,14 @@ const BlogDetails = () => {
               value="Submit Review"
             />
           </form>
+        </div>
+        <div>
+          <h2>Users review</h2>
+          {
+            reviews.map(review => <div key={review._id}>
+              <p onClick={()=> console.log(review._id)}>{review.name}</p>
+            </div>)
+          }
         </div>
       </div>
     </div>
