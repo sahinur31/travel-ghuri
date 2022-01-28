@@ -43,12 +43,12 @@ const Navigation = ({ bg, textColor, width }) => {
       >
           <div className="container">
               {/* desktop nav  */}
-            <nav className={`flex items-center font-primary ${width} mx-auto`}>
+            <nav className={`flex items-center py-3 font-primary ${width} mx-auto`}>
                 {/* brand  */}
                 <div className="flex items-center flex-grow">
                     <Link to="/" className="flex items-center space-x-2">
                         <img src="../../../assets/logo.png" alt="logo" className="w-12 h-12" />
-                        <h1 className={`${changeHeader ? "text-gray-800" : `${textColor}`} text-2xl font-semibold select-none font-logo`}>Cholo Ghuri</h1>
+                        <h2 className={`${changeHeader ? "text-gray-800" : `${textColor}`} text-2xl font-semibold select-none font-logo`}>Cholo Ghuri</h2>
                     </Link>
                 </div>
 

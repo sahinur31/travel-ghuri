@@ -30,7 +30,7 @@ const Login = () => {
   return (
     <div className="register-area py-5 text-center">
       <div className="container">
-        <div className="grid grid-cols-2 lg:grid-cols-1  h-full">
+        <div className="grid grid-cols-1 lg:grid-cols-1  h-full">
           <div className="flex justify-center">
            
             <div className="register border p-3 rounded text-center">

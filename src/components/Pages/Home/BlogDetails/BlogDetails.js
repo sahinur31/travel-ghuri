@@ -6,13 +6,14 @@ import Rating from "react-rating";
 import { useParams } from "react-router-dom";
 import swal from "sweetalert";
 import useAuth from "../../../hooks/useAuth";
+import Footer from "../Footer/Footer";
+import Navigation from "../Navigation/Navigation";
 
 const BlogDetails = () => {
   const {
     register,
     handleSubmit,
-    reset,
-    formState: { errors },
+    reset
   } = useForm();
   const { user } = useAuth();
   const { id } = useParams();
@@ -27,7 +28,7 @@ const BlogDetails = () => {
     console.log(allReviews.slice(0, 3));
   };
   // const [count,setCount]= useState(0);
-  const [selectedId, setSelectedId] = useState([]);
+  // const [selectedId, setSelectedId] = useState([]);
 
   useEffect(() => {
     fetch(`https://secure-eyrie-37258.herokuapp.com/blogs/${id}`)
@@ -78,6 +79,8 @@ const BlogDetails = () => {
   // console.log(reviews);
   // console.log(selectedId);
   return (
+    <div>
+      <Navigation />
     <div className="container my-12">
       <div className="flex">
         <div className="flex-initial">
@@ -125,13 +128,17 @@ const BlogDetails = () => {
                     <div className="border-r text-2xl">
                       <h4 className="border-b">Title</h4>
                       <h4 className="border-b">Reviewer Name</h4>
-                      <h5>Rating</h5>
+                      <h5 className="border-b">Rating</h5>
+                      <h5 className="border-b">Expense</h5>
+                      <h5 className="border-b">Description</h5>
                     </div>
                     {compareReview.map((com) => (
-                      <div className="border-r text-2xl">
+                      <div className="border-r text-xl">
                         <h4 className="border-b">{com.title}</h4>
                         <h4 className="border-b">{com.name}</h4>
-                        <h5>{com.rating}</h5>
+                        <h5 className="border-b">{com.rating}</h5>
+                        <h5 className="border-b">{com.expense}</h5>
+                        <h5 className="border-b">{com.description}</h5>
                       </div>
                     ))}
                   </div>
@@ -146,14 +153,15 @@ const BlogDetails = () => {
                     >
                       Compare
                     </button>
-                    <p
+                    <h3>{review.title}</h3>
+                    {/* <p
                       className="hover:text-blue-500 hover:cursor-pointer"
                       onClick={() => {
                         setSelectedId([...selectedId, review._id]);
                       }}
                     >
                       {review.title}
-                    </p>
+                    </p> */}
                   </div>
                 ))}
               </div>
@@ -210,6 +218,8 @@ const BlogDetails = () => {
         </div>
       </div>
     </div>
+    <Footer />
+  </div>
   );
 };
 

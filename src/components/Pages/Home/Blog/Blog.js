@@ -7,7 +7,7 @@ import {
 const Blog = ({data}) => {
     const navigate = useNavigate();
     //data
-    const {title,destination ,cost , location ,time ,image ,_id ,description} = data
+    const {title,cost , location ,time ,image ,_id ,description} = data
     // functionality for clicking
     const handleClick = () => {
         navigate(`/blogs/${_id}`)
