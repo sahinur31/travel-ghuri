@@ -10,3 +10,9 @@
     height: 100%;
     color: #ce5739;
   }
+  .slick-dots li.slick-active button:before {
+    color:White !important;
+  }
+  .slick-dots li button:before {
+    color: #202bca!important;
+  }

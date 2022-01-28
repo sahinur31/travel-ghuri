@@ -48,7 +48,7 @@ const Navigation = ({ bg, textColor, width }) => {
                 <div className="flex items-center flex-grow">
                     <Link to="/" className="flex items-center space-x-2">
                         <img src="../../../assets/logo.png" alt="logo" className="w-12 h-12" />
-                        <h1 className={`${changeHeader ? "text-gray-800" : `${textColor}`} text-3xl font-semibold select-none font-logo`}>Cholo Ghuri</h1>
+                        <h1 className={`${changeHeader ? "text-gray-800" : `${textColor}`} text-2xl font-semibold select-none font-logo`}>Cholo Ghuri</h1>
                     </Link>
                 </div>
 

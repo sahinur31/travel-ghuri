@@ -6,7 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 // import SideMenu from "./SideMenu";
 
 const Dashboard = () => {
-    const { user,logout } = useAuth();
+    const { user,logout,isAdmin } = useAuth();
   const [sidenav, setSidenav] = useState(true);
 
   //toggling the side nav
@@ -64,7 +64,8 @@ const Dashboard = () => {
                   </Link>
                 </li>
               </ul>
-              <ul className="flex flex-col space-y-3">
+              { (isAdmin && user?.email) &&
+                <ul className="flex flex-col space-y-3">
                 <li className="bg-red-500 text-white flex items-center mb-3  rounded-md py-3 cursor-pointer px-2">
                   <Link to={`/dashboard/makeAdmin`}>
                     <div className="flex items-center space-x-3">
@@ -86,7 +87,7 @@ const Dashboard = () => {
                     </div>
                   </Link>
                 </li>
-              </ul>
+              </ul>}
               <button className="btn-1 mt-4" onClick={logout}>
                     <div className="flex items-center space-x-3">
                       <span className="ml-2 font-primary">Log Out</span>

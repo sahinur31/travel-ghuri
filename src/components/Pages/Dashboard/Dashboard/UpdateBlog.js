@@ -21,7 +21,6 @@ const UpdateBlog = () => {
          axios
            .put(`https://secure-eyrie-37258.herokuapp.com/blogs/${id}`, data)
            .then((res) => {
-             console.log("succes");
              if (res.data.acknowledged) {
                swal("Good job!", "Blog Added", "success");
              }
@@ -29,7 +28,7 @@ const UpdateBlog = () => {
            })
            .catch((error) => {
              swal("Something went wrong!", `${error.message}`, "error");
-             console.log(error);
+            
            });
 
        };

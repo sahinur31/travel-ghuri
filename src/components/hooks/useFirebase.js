@@ -95,17 +95,18 @@ const useFirebase = () => {
     });
   
    }
-   /*  useEffect(() => {
-        fetch(`https://localhost:5000/checkAdmin/${user?.email}`)
-          .then((res) => res.json())
-          .then((data) => {
-            if (data[0]?.role === "admin") {
+   useEffect(() => {
+        fetch(`https://secure-eyrie-37258.herokuapp.com/users/${user?.email}`)
+          .then(res => res.json())
+          .then(data => {
+            setIsAdmin(data);
+            /* if (data[0]?.role === "admin") {
               setIsAdmin(true);
             } else {
               setIsAdmin(false);
-            }
+            } */
           });
-      }, [user?.email]); */
+      }, [user?.email]); 
     //   console.log(isAdmin);
     const logout = () => {
         setIsLoading(true);

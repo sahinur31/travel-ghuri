@@ -15,7 +15,7 @@ h1 {
 }
 
 .btn-1 {
-  @apply py-3 rounded hover:bg-dark-blue text-lg px-8 bg-tomato text-white;
+  @apply py-2 rounded hover:bg-dark-blue text-base px-6 bg-tomato text-white;
 }
 .btn-2 {
   @apply py-3 rounded  text-lg px-8 border-2 border-gray-400;

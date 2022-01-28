@@ -4,12 +4,13 @@ import React from 'react';
 // import Rating from "react-rating";
 import { useForm } from "react-hook-form";
 import swal from 'sweetalert';
+import useAuth from '../../../hooks/useAuth';
 
 const AddNewForm = () => {
     const { register, handleSubmit, reset } = useForm();
 /*     const [rating, setRating] = React.useState();
     const [blog, setBlog] = React.useState(); */
-   
+   const {isAdmin} = useAuth();
     const onSubmit = (data) => {
        /*  console.log(data);
         data["rating"] = rating;
@@ -18,7 +19,12 @@ const AddNewForm = () => {
           status:'pending',
           blog:blog
       } */
-        
+      
+      if(isAdmin){
+        data["status"] = "Approved";
+      }else{
+        data["status"] = "Pending";
+      }
         axios
           .post("https://secure-eyrie-37258.herokuapp.com/blogs", data)
           .then((res) => {
@@ -40,9 +46,9 @@ const AddNewForm = () => {
                     {/* title  */}
                     <input type="text" className="input-primary" placeholder="Title" {...register("title", { required: true })} />
                     {/* description  */}
-                    <textarea cols="30" rows="9" className="input-primary resize-none" placeholder="Description" {...register("description", { required: true })}></textarea>
+                    <textarea cols="30" rows="9" className="input-primary resize-none" placeholder="Description" {...register("description")}></textarea>
                      {/* category  */}
-                     <input className="input-primary" type="time" placeholder="Time" {...register("time", { required: true })} />
+                     <input className="input-primary" type="time" placeholder="Time" {...register("time")} />
                 </div>
 
                 <div className="flex flex-col space-y-4">
@@ -57,7 +63,7 @@ const AddNewForm = () => {
                     {/* expense  */}
                     <input type="number" className="input-primary" placeholder="Cost" {...register("cost", { required: true })} />
                     {/* info  */}
-                    <input type="text" className="input-primary" placeholder="Traveler Info" {...register("info", { required: true })} />
+                    <input type="text" className="input-primary" placeholder="Traveler Info" {...register("info")} />
                  {/*    
                     <p className="text-gray-600 font-primary">
                               Give a rating*
