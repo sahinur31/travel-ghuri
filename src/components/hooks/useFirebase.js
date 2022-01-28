@@ -21,6 +21,7 @@ const useFirebase = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setAuthError('');
+                verifyEmail();
                 const newUser = { ...userCredential, displayName: name };
                 setUser(newUser);
                 // save user to the database
@@ -31,7 +32,7 @@ const useFirebase = () => {
                 }).then(() => {
                 }).catch((error) => {
                 });
-                verifyEmail();
+               
                 navigate('/');
                 window.location.reload();
             })
@@ -87,14 +88,16 @@ const useFirebase = () => {
          return ()=> unsubscribe()
    },[auth])
 
+   
    const verifyEmail = () => {
+    const auth = getAuth();
     sendEmailVerification(auth.currentUser)
-    .then((result) => {
-      // Email verification sent!
-      // ...
-    });
-  
-   }
+        .then((result) => {
+            console.log(result)
+            // Email verification sent!
+            // ...
+        })
+}
    useEffect(() => {
         fetch(`https://secure-eyrie-37258.herokuapp.com/users/${user?.email}`)
           .then(res => res.json())
