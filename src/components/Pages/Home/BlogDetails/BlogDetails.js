@@ -19,21 +19,38 @@ const BlogDetails = () => {
   const [blog, setBlog] = useState({});
   const [reviews, setReviews] = useState([]);
   const [rating, setRating] = React.useState();
+  // const [count,setCount]= useState(0);
+  const [selectedId,setSelectedId] = useState([]);;
+  
   useEffect(() => {
     fetch(`https://secure-eyrie-37258.herokuapp.com/blogs/${id}`)
       .then((res) => res.json())
       .then((data) => setBlog(data));
   }, [id]);
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
+    const blogRating = parseInt(rating);
+    // parseInt(blog.rating) + parseInt(rating)
+    const ratingBlog = { blogRating, id };
     data["rating"] = rating;
     const newReview = {
-        ...data,
-        status:'pending',
-        title:blog.title,
-        image: blog.image
-        
-    }
+      ...data,
+      status: "pending",
+      title: blog.title,
+      image: blog.image,
+    };
+    //add blog rating
+    fetch(`https://secure-eyrie-37258.herokuapp.com/rating`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+
+      body: JSON.stringify(ratingBlog),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
     axios
       .post("https://secure-eyrie-37258.herokuapp.com/review", newReview)
       .then((res) => {
@@ -52,94 +69,104 @@ const BlogDetails = () => {
       .then((data) => setReviews(data));
   }, []);
   // console.log(reviews);
+  console.log(selectedId);
   return (
     <div className="container my-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-10 my-20">
-        {/* contect of the blog */}
-        <div>
-          <h1>{blog.title}</h1>
-          <div>
-            <img alt="" className="w-full h-80" src={blog.image} />
-          </div>
-          <div className="my-10">
-            <h2 className="text-2xl font-bold">{blog.destination}</h2>
-            <p className="text-gray-600 my-3">
-              <span className="text-xl font-bold text-tomato">
-                $ {blog.cost}
-              </span>{" "}
-              / per person
-            </p>
-            <div className="flex">
-              <div className="my-3 flex mr-5">
-                <span className="font-semibold">Time</span> :{" "}
-                <FaClock className="mr-1" />
-                {blog.time} days
+      <div className="flex">
+        <div className="flex-initial">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 my-20">
+            {/* contect of the blog */}
+            <div>
+              <h1>{blog.title}</h1>
+              <div>
+                <img alt="" className="w-full h-80" src={blog.image} />
               </div>
+              <div className="my-10">
+                <h2 className="text-2xl font-bold">{blog.destination}</h2>
+                <p className="text-gray-600 my-3">
+                  <span className="text-xl font-bold text-tomato">
+                    $ {blog.cost}
+                  </span>{" "}
+                  / per person
+                </p>
+                <div className="flex">
+                  <div className="my-3 flex mr-5">
+                    <span className="font-semibold">Time</span> :{" "}
+                    <FaClock className="mr-1" />
+                    {blog.time} days
+                  </div>
 
-              <div className="my-3 flex">
-                <span className="font-semibold">Location</span> :{" "}
-                <FaMapMarkerAlt className="mr-1" />
-                {blog.location}
+                  <div className="my-3 flex">
+                    <span className="font-semibold">Location</span> :{" "}
+                    <FaMapMarkerAlt className="mr-1" />
+                    {blog.location}
+                  </div>
+                </div>
+                <p className="text-gray-600">
+                  <span className="font-semibold">Description</span> :{" "}
+                  {blog.description}
+                </p>
+              </div>
+              <div>
+                <h1 className="mb-4">Reviews</h1>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <input
+                    className="block mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    defaultValue={user.displayName}
+                    {...register("name")}
+                    placeholder="Your Name"
+                  />
+                  <input
+                    className="block mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    type="email"
+                    defaultValue={user?.email}
+                    {...register("email")}
+                    placeholder="Email"
+                  />
+                  <input
+                    className="block mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    type="number"
+                    defaultValue={user?.email}
+                    {...register("expense")}
+                    placeholder="Expense"
+                  />
+                  <textarea
+                    className="block mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    style={{ height: "150px" }}
+                    {...register("description")}
+                    placeholder="Description"
+                  />
+                  <div className="flex flex-col mb-3">
+                    <p className="text-gray-600 font-primary">Give a rating*</p>
+                    <Rating
+                      onChange={(rate) => setRating(rate)}
+                      stop={10}
+                      emptySymbol={<FaRegStar />}
+                      fullSymbol={<FaStar />}
+                    />
+                  </div>
+                  <input
+                    className="btn-1 theme-bg text-white px-4"
+                    type="submit"
+                    value="Submit Review"
+                  />
+                </form>
               </div>
             </div>
-            <p className="text-gray-600">
-              <span className="font-semibold">Description</span> :{" "}
-              {blog.description}
-            </p>
-          </div>
-        </div>
-        <div>
-          <h1 className="mb-4">Reviews</h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              className="block mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              defaultValue={user.displayName}
-              {...register("name")}
-              placeholder="Your Name"
-            />
-            <input
-              className="block mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="email"
-              defaultValue={user?.email}
-              {...register("email")}
-              placeholder="Email"
-            />
-            <input
-              className="block mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="number"
-              defaultValue={user?.email}
-              {...register("expense")}
-              placeholder="Expense"
-            />
-            <textarea
-              className="block mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              style={{ height: "150px" }}
-              {...register("description")}
-              placeholder="Description"
-            />
-            <div className="flex flex-col mb-3">
-              <p className="text-gray-600 font-primary">Give a rating*</p>
-              <Rating
-                onChange={(rate) => setRating(rate)}
-                stop={10}
-                emptySymbol={<FaRegStar />}
-                fullSymbol={<FaStar />}
-              />
+
+            <div className="flex-1 ml-4" style={{ minWidth: "400px" }}>
+              <h2>Users review</h2>
+              <button className={`bg-blue-500 mb-5 py-1 px-2 rounded text-white hover:bg-blue-600 ${selectedId.length>1 ? 'inline-block' : 'hidden'}`} onClick={() => setSelectedId([])}>Add to Compare</button>
+              {reviews.map((review) => (
+                <div className="mb-3" key={review._id}>
+
+                  <p className="hover:text-blue-500 hover:cursor-pointer" onClick={() => {
+                    setSelectedId([...selectedId,review._id]);
+                  }}>{review.name}</p>
+                </div>
+              ))}
             </div>
-            <input
-              className="btn-1 theme-bg text-white px-4"
-              type="submit"
-              value="Submit Review"
-            />
-          </form>
-        </div>
-        <div>
-          <h2>Users review</h2>
-          {
-            reviews.map(review => <div key={review._id}>
-              <p onClick={()=> console.log(review._id)}>{review.name}</p>
-            </div>)
-          }
+          </div>
         </div>
       </div>
     </div>
